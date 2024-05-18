@@ -1,5 +1,3 @@
-package quicksort;
-
 import processing.core.PApplet;
 
 class Main {
