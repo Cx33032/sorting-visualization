@@ -2,12 +2,6 @@ int[] arr = new int[250];
 final int width = 4;
 final int height = 500;
 
-void setting(){
-    // size(1000, 1000);
-    // size(3000, 3000);
-    
-}
-
 void setup() {
     // fullScreen();
     size(1000, 500);
