@@ -7,10 +7,13 @@ class MergeSortThread extends Thread{
 
     @Override
     public void run(){
-        int[] sortArray = mergeSort(arr);
+        int[] sortArray = mergeSort(arr, 0, arr.length - 1);
     }
 
-    public int[] mergeSort(int array){
+    public int[] mergeSort(int[] array, int start, int end){
+        if(end < start)
+            end = start;
+
         if(array.length < 2)
             return array;
         
@@ -24,12 +27,20 @@ class MergeSortThread extends Thread{
         for(int i = 0; i < array.length - middle; i++)
             right[i] = array[i + middle];
 
-        return merge(left, right);
+        int[] result = merge(mergeSort(left, start, middle - 1), mergeSort(right, middle, end));
+        int j = 0;
+        
+        for(int i = 0; i < result.length; i++){
+            arr[i + start] = result[i];
+            redraw();
+        }
+        delay(30);
+        return result;
         
     }
 
     public int[] merge(int[] left, int[] right){
-        int leftPointer = 0, rightPointer = 0, index = 0;
+        int leftPointer = 0, rightPointer = 0, i = 0;
         int[] result = new int[left.length + right.length];
 
         while(leftPointer < left.length && rightPointer < right.length){
